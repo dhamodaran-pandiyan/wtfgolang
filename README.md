@@ -2,6 +2,7 @@
 <h1 align="center">What the f*ck Golang! 😱</h1>
 <p align="center">Exploring and understanding Golang through surprising snippets.</p>
 
+> The idea and design for this collection were inspired by satwikkansal's awesome project [wtfpython](https://github.com/satwikkansal/wtfpython). 
 
 Golang, one of the most facinating language, carrying out programming for scalable servers and large software systems. 
 <!-- 
@@ -39,8 +40,6 @@ A nice way to get the most out of these examples, in my opinion, is to read them
 
 ### ▶ Careful with the braces!
 
-
-<!-- Example ID: 30f1d3fc-e267-4b30-84ef-4d9e7091ac1a --->
 <br>
 
 1\.
@@ -84,6 +83,67 @@ main.go:6: syntax error: unexpected semicolon or newline before {
 ---
 
 
+<br>
+
+### ▶ Strings are immutable!
+
+<br>
+
+1\.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    x := "text"
+    x[0] = 'T'
+
+    fmt.Println(x)
+}
+```
+
+**Output:**
+
+```go
+./prog.go:7:2: cannot assign to x[0] (value of type byte)
+
+Go build failed.
+```
+
+
+#### 💡 Explanation:
+
+- The immutability of strings is not the same as immutability of variables.
+
+- Immutability of strings means that the characters in the string cannot be changed. This holds true for Go. Go makes use of it when slicing strings as shown in the example below.
+
+- Variables in Go are always mutable. When a string variable is changed, the internal fields of the variable (pointer and length) are changed. The address of variable never changes.
+
+- The example below presents the internals of Go string variable. The first integer is an address to the array of characters and the second is the length.
+
+- See the article on internals of string in Go http://research.swtch.com/godata.
+
++ Working program, 
+      
+    ```go
+    package main
+
+    import "fmt"
+
+    func main() {
+        x := "text"
+        xbytes := []byte(x)
+        xbytes[0] = 'T'
+
+        fmt.Println(string(xbytes)) //prints Text
+    }
+    ```
+
+
+
+---
 
 # Contributing
 
