@@ -117,13 +117,17 @@ Go build failed.
 
 - The immutability of strings is not the same as immutability of variables.
 
-- Immutability of strings means that the characters in the string cannot be changed. This holds true for Go. Go makes use of it when slicing strings as shown in the example below.
+- Immutability of strings means that the characters in the string cannot be changed. This holds true for Go. 
 
 - Variables in Go are always mutable. When a string variable is changed, the internal fields of the variable (pointer and length) are changed. The address of variable never changes.
 
-- The example below presents the internals of Go string variable. The first integer is an address to the array of characters and the second is the length.
+- In Go, string is its own data type. At its core, it’s still a sequence of bytes, but:
+  - It’s a fixed length. It doesn’t just continue on until a zero appears.
+  - It comes with extra information: its length.
+  - “Characters” or runes may span multiple bytes.
+  - It’s immutable.
 
-- See the article on internals of string in Go http://research.swtch.com/godata.
++ See the article on internals of string in Go http://research.swtch.com/godata.
 
 + Working program, 
       
